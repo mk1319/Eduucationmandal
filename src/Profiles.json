@@ -1,0 +1,32 @@
+[
+  {
+    "id": "VSKYS",
+    "name": "Sebastian Lee",
+    "imgUrl": "https://randomuser.me/api/portraits/men/31.jpg"
+  },
+  {
+    "id": "LV2QQ",
+    "name": "Camila Lawson",
+    "imgUrl": "https://randomuser.me/api/portraits/women/42.jpg"
+  },
+  {
+    "id": "H8Q6F",
+    "name": "Gabe Wheeler",
+    "imgUrl": "https://randomuser.me/api/portraits/men/37.jpg"
+  },
+  {
+    "id": "OCOEH",
+    "name": "Lucille Berry",
+    "imgUrl": "https://randomuser.me/api/portraits/women/84.jpg"
+  },
+  {
+    "id": "ZQPKX",
+    "name": "Shawn Mccoy",
+    "imgUrl": "https://randomuser.me/api/portraits/men/53.jpg"
+  },
+  {
+    "id": "VBQ7B",
+    "name": "Melvin Austin",
+    "imgUrl": "https://randomuser.me/api/portraits/men/10.jpg"
+  }
+]
