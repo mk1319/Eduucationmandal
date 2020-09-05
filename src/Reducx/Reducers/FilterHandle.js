@@ -7,11 +7,8 @@ import{Fatch_Filter_DATA,
 
 const initialstate={
     Data:[],
-    PanelCourse:[],
-    PanelStream:[],
-    PanelCity:[],
-    PanelState:[],
-    DemoData:[]
+    DemoData:[],
+    PanelData:[]
 }
 
 
@@ -20,6 +17,7 @@ const FilterData=(state=initialstate,action)=>{
 
     let ClassID=[]
     
+    console.log('Filter:-',action)
 
     //for City
     state.DemoData.filter(
@@ -66,12 +64,7 @@ const FilterHandle=(state=initialstate,action)=>{
         case Fatch_Filter_DATA:
             return {...state,Data:action.payload,DemoData:action.payload}
         case FATCH_FOR_PANEL:
-            return {...state,PanelCourse:action.payload[0],
-                PanelState:action.payload[1],
-                PanelCity:action.payload[2],
-                PanelStream:action.payload[3]
-            
-                }
+            return {...state,PanelData:action.payload}
         case FILTER_HANDLE:
             return FilterData(state,action.payload)
         case FATCH_SEARCH_RESULT:

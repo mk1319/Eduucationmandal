@@ -26,7 +26,7 @@ export const fatch_filter_data=()=>dispatch=>{
 export const fatch_panel_data=()=>async dispatch=>{
 
     try{
-        await axios.get('http://data.educationmandal.com/ClassFilter/FilterOption')
+        await axios.get('http://localhost:5000/ClassFilter/FilterOption1')
         .then((res)=>dispatch({
             type:FATCH_FOR_PANEL,
             payload:res.data

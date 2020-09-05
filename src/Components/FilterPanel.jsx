@@ -88,7 +88,7 @@ const Container = styled.div`
 
 
 
-function FilterPanel({ open ,toggleOpen,fatch_panel_data,PanelCourse,PanelCity,PanelState,PanelStream,Filter_Handle}) {
+function FilterPanel({ open ,toggleOpen,fatch_panel_data,PanelData,Filter_Handle}) {
 
       const [Filter, setFilter] = useState({
           Course:[],
@@ -99,16 +99,13 @@ function FilterPanel({ open ,toggleOpen,fatch_panel_data,PanelCourse,PanelCity,P
       });
 
 
-      console.log(Filter)
-  
     const Handleset=(value,statename)=>{
 
-      let array=Filter;
+        let array=Filter;
 
       switch(statename)
       {    
         case'Course':
-        
           if(Filter.Course.includes(value))
           {
             array.Course.splice(array.Course.indexOf(value),1);
@@ -154,7 +151,6 @@ function FilterPanel({ open ,toggleOpen,fatch_panel_data,PanelCourse,PanelCity,P
           }
         
         break;
-
         case 'Stream':
           
           if(Filter.Stream.includes(value))
@@ -167,7 +163,6 @@ function FilterPanel({ open ,toggleOpen,fatch_panel_data,PanelCourse,PanelCity,P
             array.Stream.push(value);
             setFilter(array);
           }
-        
         break;
         case 'Type':
           array.Type=value
@@ -179,69 +174,23 @@ function FilterPanel({ open ,toggleOpen,fatch_panel_data,PanelCourse,PanelCity,P
       return null
     }
     
-      function FilterCourse({data}) {
-        return (
-          <div className="filter">
-            <h1>Course</h1>
-            {data.map((data)=>
-              <FilterPill 
-                key={data.Name}
-                value={data.Name}
-                onClick={(e)=>Handleset(data.Name,'Course')}
-            >+{data.Name}</FilterPill>
-            )}
-          </div>
-        );
-      }
 
-      function FilterState({data}) {
-        return (
-          <div className="filter">
-            <h1>State</h1>
-            {data.map((data) => (
-              <FilterPill 
-                key={data.State} 
-                onClick={()=>Handleset(data.State,'State')} 
-              
-              >+ {data.State}</FilterPill>
-
-            ))}
-          </div>
-        );
-      }
-      
-      function FilterCity({ data}) {  
-        return (
-          <div className="filter">
-            <h1>City</h1>
-            {data.map((data)=>
-            <FilterPill key={data.City} 
-                        onClick={()=>Handleset(data.City,'City')} 
-            >+{data.City}</FilterPill>
-
-            )}
-          </div>
-        );
-      }
-      
-      function FilterStrem({ data}) {
-        return (
-          <div className="filter">
-            <h1>Stream</h1>
-            {data.map((data)=>
-            <FilterPill key={data.Name} 
-                        onClick={()=>Handleset(data.Name,'Stream')}
-            >       
-              +{data.Name}
-            </FilterPill>
-            )}
-          </div>
-        );
-      }
-      
+    function FilterAll(data,title) {
+      return (
+        <div className="filter" key={title}>
+          <h1>{title}</h1>
+          {data.map((data)=>
+            <FilterPill 
+              key={data.Name}
+              value={data.Name}
+              onClick={()=>Handleset(data.Name,title)}
+          >+{data.Name}</FilterPill>
+          )}
+        </div>
+      );
+    }
 
     //Apply Filter
-      
     function applyfilter()
     { 
       toggleOpen()
@@ -265,10 +214,9 @@ function FilterPanel({ open ,toggleOpen,fatch_panel_data,PanelCourse,PanelCity,P
     <Container className={open ? undefined : "close"}>
       <h1>Filters</h1>
 
-        <FilterCourse data={PanelCourse}/>
-        <FilterCity data={PanelCity}/>
-        <FilterState data={PanelState}/>
-        <FilterStrem data={PanelStream}/>
+          {PanelData.map((data)=>
+              FilterAll(data.Data,data.title)
+                )}
 
 
 
@@ -310,10 +258,7 @@ function FilterPanel({ open ,toggleOpen,fatch_panel_data,PanelCourse,PanelCity,P
 
 
 const maptoprops=state=>({
-  PanelCourse:state.Filter.PanelCourse,
-  PanelStream:state.Filter.PanelStream,
-  PanelCity:state.Filter.PanelCity,
-  PanelState:state.Filter.PanelState
+  PanelData:state.Filter.PanelData
 })
 
 
