@@ -40,7 +40,7 @@ const Container = styled.div`
 `;
 
 const Profile = ({ profile }) => (
-  <Link>
+  <Link to="/">
     <div className="profile">
       <div
         className="img"

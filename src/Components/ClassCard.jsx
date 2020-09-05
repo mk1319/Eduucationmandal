@@ -122,6 +122,7 @@ const View = styled.button`
   padding: 12px 0;
 `;
 
+
 // REACT COMPONENTS
 const LikeButton = () => {
   const [liked, setLiked] = useState(false);
@@ -141,45 +142,52 @@ const LikeButton = () => {
   );
 };
 
-function ClassCard() {
+function ClassCard(props) {
+
+
+    const Data=props.Data
+
   return (
     <Card>
       <div className="class-image">
         <div className="rating">
           <img src={Star} alt="star" />
-          <h3>4.6</h3>
+          <h3>{parseFloat(Data.Rate)}</h3>
         </div>
         <LikeButton />
         <div className="location-bar">
           <img src={LocationPin} alt="location icon" />
-          <h3>Mumbai, Bandra</h3>
+          <h3>{`${Data.City} ,${Data.Town}`}</h3>
         </div>
       </div>
 
       <div className="class-details">
         <div className="title">
-          <h1>Allen Tutorials</h1>
+          <h1>{Data.Name}</h1>
           <img src={Verified} alt="verified" />
         </div>
         <div className="courses">
-          <CoursePill light>JEE</CoursePill>
-          <CoursePill light>Science</CoursePill>
-          <CoursePill light>Science</CoursePill>
-          <CoursePill light>Science</CoursePill>
-          <CoursePill light>Science</CoursePill>
+          {
+            Data.Course.map((Course,index)=>(
+              <CoursePill light key={index}>{Course.Name}</CoursePill>
+            ))
+          }
+      
+        
         </div>
         <div className="contact-details">
           <div className="contact">
             <img src={Phone} alt="phone" />
-            <p>7854289653</p>
+            <p>{Data.Contact}</p>
           </div>
           <div className="contact">
             <img src={Email} alt="phone" />
-            <p>raoiit@google.com</p>
+            <p>{Data.Email}</p>
           </div>
         </div>
       </div>
-      <Link to="/class/Allen/123">
+      <Link to={`/class/${Data.Name}/${Data.ClassID}`}>
+
         <View>View Class</View>
       </Link>
     </Card>

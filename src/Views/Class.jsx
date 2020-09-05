@@ -180,6 +180,11 @@ function Class({ match }) {
     setTab(!tab);
   };
 
+  console.log(match.params.id)
+
+
+
+
   return (
     <>
       {/* TOP WRAPPER */}
