@@ -1,0 +1,20 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  IMPORTANT  !!!!!!!!!!!!!!!!!!!!!!!!!
+- fix the body scroll behavior when burger is opened
+- link the {courses/exams} tab with the display tab
+- replace non-recursive icons witn react icons
+- public/private routes for future
+- take care of scrollbars in all types of browsers
+- fix width = -webkit-fill-available for other browsers(use 'stretch')
+- fix consistent card heights
+
+04/09
+- Added the maps section in the class page
+- Added the other branches section in the class page
+- Routing the Profile(Student/Teacher/Admin) page
+- Dynamic content on profile pages based on the type of user(Student/Teacher)
+- Made the reusable GIVE_FEEDBACK component
+- Added GIVE_FEEDBACK in class and profile pages
+- Integrated state management for the GIVE_FEEDBACK component.
+- Made the header color adaptive for different pages .
+- Added the navigation bar in the header(both for mobile/desktops).
+- Added routing from navbar to pages

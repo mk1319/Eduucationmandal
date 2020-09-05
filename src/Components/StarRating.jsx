@@ -8,17 +8,22 @@ const StyledLabel = styled.label`
   }
   .star {
     cursor: pointer;
-    width: 18px;
-    height: 18px;
+    width: ${(props) => (props ? props.size + "px" : "18px")};
+    height: ${(props) => (props ? props.size + "px" : "18px")};
     margin: 4px;
     transition: all 0.5s ease;
   }
 `;
 
 // MASTER COMPONENT
-const StarRating = ({ rate }) => {
+const StarRating = ({ rate, size, ratingFunction }) => {
   const [rating, setRating] = useState(rate || null);
   const [hover, setHover] = useState(null);
+
+  const handleClick = (rating) => {
+    setRating(rating);
+    ratingFunction(rating);
+  };
 
   return (
     <div style={rate && { pointerEvents: "none" }}>
@@ -26,11 +31,11 @@ const StarRating = ({ rate }) => {
         const ratingValue = index + 1;
 
         return (
-          <StyledLabel>
+          <StyledLabel size={size}>
             <input
               type="radio"
               name="rating"
-              onClick={() => setRating(ratingValue)}
+              onClick={() => handleClick(ratingValue)}
               value={ratingValue}
             />
             <FaStar

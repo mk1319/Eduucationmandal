@@ -6,8 +6,10 @@ import SearchBar from "../Components/SearchBar";
 import FilterPanel from "../Components/FilterPanel";
 import ClassCard from "../Components/ClassCard";
 import TabGroup from "../Components/TabGroup";
+import Header from "../Components/Nav/Header";
 import {connect} from 'react-redux'
 import {fatch_filter_data} from '../Reducx/action/FatchData'
+
 
 
 
@@ -69,30 +71,23 @@ const ClassList = styled.div`
 
 // REACT
 function Courses(props) {
-
-  const dattt=[];
+  
 
   useEffect(() => {
-
     props.fatch_filter_data()
-    
     return () => {};
 
   },[])
 
-
   const ClassCardData=props.Data.map((Data)=>(
       <ClassCard Data={Data} key={Data.ClassID} />
   ))
+  
+  
+  
 
-
-
- 
-
+  
   const [open, setOpen] = useState(false);
-
-
-
 
   const toggleOpen = () => {
     setOpen(!open);
@@ -100,14 +95,15 @@ function Courses(props) {
 
   return (
     <>
+      <Header />
       <Wrapper>
         <BrowseContainer>
           <h1>Browse your Class/Course</h1>
           <img src={Browse} alt="Browse" />
         </BrowseContainer>
-        <SearchBar toggleOpen={toggleOpen} />
+        <SearchBar toggleOpen={toggleOpen} open={open} />
       </Wrapper>
-      <FilterPanel open={open} toggleOpen={toggleOpen} />
+      <FilterPanel open={open} toggleOpen={toggleOpen}/>
       <Sort>
         <h2>Sort By: </h2>
         <TabGroup
@@ -115,20 +111,17 @@ function Courses(props) {
           activeClass="sort-active"
         />
       </Sort>
-        <ClassList>
+
+      <ClassList>
         {ClassCardData}
-        </ClassList>
+      </ClassList>
     </>
   );
 }
 
 
+
 const maptoprops=state=>({
   Data:state.Filter.Data
-
 })
-
-
-
-
 export default connect(maptoprops,{fatch_filter_data})(Courses);

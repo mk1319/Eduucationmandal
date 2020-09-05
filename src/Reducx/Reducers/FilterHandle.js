@@ -17,7 +17,6 @@ const FilterData=(state=initialstate,action)=>{
 
     let ClassID=[]
     
-    console.log('Filter:-',action)
 
     //for City
     state.DemoData.filter(

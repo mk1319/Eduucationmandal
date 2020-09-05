@@ -12,6 +12,9 @@ import ProfileDisplay from "../Components/ProfileDisplay";
 import Profiles from "../Profiles.json";
 import FooterContainer from "../Components/FooterContainer";
 import Reviews from "../Components/Reviews";
+import LocateUs from "../Components/LocateUs";
+import FeedBack from "../Components/FeedBack";
+import Header from "../Components/Nav/Header";
 
 // STYLING
 const Wrapper = styled(TopWrapper)`
@@ -180,13 +183,9 @@ function Class({ match }) {
     setTab(!tab);
   };
 
-  console.log(match.params.id)
-
-
-
-
   return (
     <>
+      <Header white />
       {/* TOP WRAPPER */}
       <Wrapper>
         <h1>{match.params.classname}</h1>
@@ -231,14 +230,25 @@ function Class({ match }) {
 
       {/* TEACHERS */}
       <TabContainer>
-        <ProfileDisplay title={"Our Faculty"} profiles={Profiles} />
+        <ProfileDisplay
+          title={"Our Faculty"}
+          type="Teacher"
+          profiles={Profiles}
+        />
       </TabContainer>
       {/* ///// */}
 
       {/* FOOTER */}
       <FooterContainer>
-        <ProfileDisplay title={"Our Faculty"} profiles={Profiles} light />
-        <Reviews />
+        <ProfileDisplay
+          title={"Our Students"}
+          type="Student"
+          profiles={Profiles}
+          light
+        />
+        <Reviews light />
+        <FeedBack dark />
+        <LocateUs />
       </FooterContainer>
       {/* ///// */}
     </>

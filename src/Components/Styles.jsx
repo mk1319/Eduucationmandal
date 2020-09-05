@@ -1,4 +1,6 @@
+import React from "react";
 import styled from "styled-components";
+import { FaStar } from "react-icons/fa";
 
 const SectionHead = styled.h2`
   font-size: 24px;
@@ -6,6 +8,25 @@ const SectionHead = styled.h2`
   margin-bottom: 10px;
   color: ${({ light, theme }) =>
     light ? theme.colors.dHeading : theme.colors.lHeading};
+`;
+
+const StyledRating = styled.div`
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  padding: 5px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 12px;
+
+  h3 {
+    font-size: 16px;
+  }
+  .star {
+    margin-right: 5px;
+  }
 `;
 
 const PillCard = styled.div`
@@ -22,4 +43,11 @@ const PillCard = styled.div`
   }
 `;
 
-export { SectionHead, PillCard };
+const Rating = ({ rate }) => (
+  <StyledRating className="rating">
+    <FaStar fill="#FFEA29" className="star" />
+    <h3>{rate}</h3>
+  </StyledRating>
+);
+
+export { SectionHead, PillCard, Rating };

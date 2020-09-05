@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import LocationPin from "../assets/LocationPin.svg";
-import Star from "../assets/Star.svg";
 import Verified from "../assets/Verified.png";
 import Pill from "./Pill";
 import Phone from "../assets/Phone.svg";
 import Email from "../assets/Mail.svg";
 import { Link } from "react-router-dom";
+import { Rating } from "../Components/Styles";
 
 const Card = styled.div`
   background-color: ${(props) => props.theme.colors.dHeading};
@@ -14,30 +14,13 @@ const Card = styled.div`
   box-shadow: 0 2px 10px 0px #e9e9e9;
   overflow: hidden;
   max-width: 350px;
+  min-width: 310px;
+  width: stretch;
   margin-bottom: 32px;
   .class-image {
     height: 200px;
     background-color: #d5d5d5;
     position: relative;
-
-    .rating {
-      position: absolute;
-      left: 10px;
-      top: 10px;
-      padding: 5px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: white;
-      border-radius: 12px;
-
-      h3 {
-        font-size: 16px;
-      }
-      img {
-        margin-right: 5px;
-      }
-    }
 
     .location-bar {
       position: absolute;
@@ -122,7 +105,6 @@ const View = styled.button`
   padding: 12px 0;
 `;
 
-
 // REACT COMPONENTS
 const LikeButton = () => {
   const [liked, setLiked] = useState(false);
@@ -142,22 +124,22 @@ const LikeButton = () => {
   );
 };
 
-function ClassCard(props) {
+function ClassCard(props){
 
 
-    const Data=props.Data
+  const Data=props.Data
+
+ 
 
   return (
     <Card>
       <div className="class-image">
-        <div className="rating">
-          <img src={Star} alt="star" />
-          <h3>{parseFloat(Data.Rate)}</h3>
-        </div>
+        <Rating rate={`${Data.Rate}`} />
         <LikeButton />
         <div className="location-bar">
           <img src={LocationPin} alt="location icon" />
           <h3>{`${Data.City} ,${Data.Town}`}</h3>
+
         </div>
       </div>
 
@@ -167,13 +149,11 @@ function ClassCard(props) {
           <img src={Verified} alt="verified" />
         </div>
         <div className="courses">
-          {
+        {
             Data.Course.map((Course,index)=>(
               <CoursePill light key={index}>{Course.Name}</CoursePill>
             ))
           }
-      
-        
         </div>
         <div className="contact-details">
           <div className="contact">
@@ -187,7 +167,6 @@ function ClassCard(props) {
         </div>
       </div>
       <Link to={`/class/${Data.Name}/${Data.ClassID}`}>
-
         <View>View Class</View>
       </Link>
     </Card>

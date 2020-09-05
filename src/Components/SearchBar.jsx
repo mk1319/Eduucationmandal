@@ -5,9 +5,10 @@ import styled from "styled-components";
 import {connect} from 'react-redux';
 import {fatch_seacrh_data} from '../Reducx/action/FatchData';
 
+
 const Search = styled.div`
   position: relative;
-  width: -webkit-fill-available;
+  width: stretch;
   margin-top: 24px;
   display: grid;
   place-items: center;
@@ -35,43 +36,47 @@ const Search = styled.div`
   }
 `;
 
-function SearchBar({ toggleOpen,fatch_seacrh_data}) {
+function SearchBar({ toggleOpen,fatch_seacrh_data,open }) {
+  
 
-  const [active, setActive] = useState(true);
-  const [param, setParam] = useState();
+  //I remove this props and passes in Course.jsx props open in SeacrhBar compononent.. this is for your reference
+  //const [active, setActive] = useState(false); 
+  
+  const [param, setParam] = useState(); //SEARCH VALUE
+
+
 
   const handleClick = () => {
-    setActive(!active);
+    // setActive(!active);
     toggleOpen();
   };
 
 
   //search bar filter
   const onchangehandle=(e)=>{
-    setParam(e.target.value)
-    fatch_seacrh_data(e.target.value)
+    setParam(e)
+    fatch_seacrh_data(e)
   }
 
-
-
-  return (  
+  
+  return (
     <Search>
       <input
-        onChange={(e) => onchangehandle(e)}
+        onChange={(e) => onchangehandle(e.target.value)}
         value={param}
         type="text"
         placeholder="Search"
       />
-
       <img
-        className={active ? "active" : ""}
+        className={open ? "active" : undefined}
         onClick={handleClick}
         src={FilterButton}
         alt="filter"
       />
-    
     </Search>
   );
 }
 
+
 export default connect(null,{fatch_seacrh_data})(SearchBar);
+

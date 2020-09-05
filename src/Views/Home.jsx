@@ -13,6 +13,7 @@ import ServiceCards from "../Components/ServiceCards";
 import FooterContainer from "../Components/FooterContainer";
 import { SectionHead } from "../Components/Styles";
 import { Link } from "react-router-dom";
+import Header from "../Components/Nav/Header";
 
 const Wrapper = styled(TopWrapper)`
   height: calc(100vh - 78px);
@@ -92,7 +93,8 @@ const CoursePill = styled(Pill)`
 
 function Home() {
   return (
-    <div>
+    <>
+      <Header />
       <Wrapper>
         <div className="hero-illustration">
           <img src={HeroIllustration} alt="illustration" />
@@ -172,7 +174,7 @@ function Home() {
           <CoursePill type="pill">ME/M.Tech</CoursePill>
         </PillContainer>
       </FooterContainer>
-    </div>
+    </>
   );
 }
 

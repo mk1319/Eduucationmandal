@@ -39,26 +39,30 @@ const Container = styled.div`
   }
 `;
 
-const Profile = ({ profile }) => (
-  <Link to="/">
-    <div className="profile">
-      <div
-        className="img"
-        style={{ backgroundImage: `url(${profile.imgUrl})` }}
-      />
+const Profile = ({ profile, type }) => {
+  const slicedname = profile.name.replace(/\s/g, "");
 
-      <h3 className="name">{profile.name}</h3>
-    </div>
-  </Link>
-);
+  return (
+    <Link to={`/${type}/${slicedname}/${profile.id}`}>
+      <div className="profile">
+        <div
+          className="img"
+          style={{ backgroundImage: `url(${profile.imgUrl})` }}
+        />
 
-function ProfileDisplay({ title, profiles, light }) {
+        <h3 className="name">{profile.name}</h3>
+      </div>
+    </Link>
+  );
+};
+
+function ProfileDisplay({ title, profiles, type, light }) {
   return (
     <Container light={light}>
       <SectionHead light={light}>{title}</SectionHead>
       <div className="flex">
         {profiles.map((profile) => (
-          <Profile key={profile.id} profile={profile} />
+          <Profile key={profile.id} type={type} profile={profile} />
         ))}
       </div>
     </Container>

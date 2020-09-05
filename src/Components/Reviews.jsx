@@ -13,6 +13,7 @@ const ReviewList = styled.div`
   flex-wrap: nowrap;
   overflow-x: scroll;
   position: relative;
+  margin-right: -8vw;
   -webkit-overflow-scrolling: touch;
   &::-webkit-scrollbar {
     display: none;
@@ -23,12 +24,14 @@ const ReviewList = styled.div`
     right: -1px;
     top: 0;
     bottom: 0;
-    padding: 0 35px;
+    padding: 0 45px;
     width: 20px;
     background-image: linear-gradient(
       to right,
-      rgba(16, 19, 23, 0),
-      rgba(16, 19, 23, 0.3)
+      ${(props) =>
+        props.light
+          ? "rgba(16, 19, 23, 0), rgba(16, 19, 23, 0.5)"
+          : "rgba(245, 245, 245, 0), rgba(245, 245, 245, 0.5)"}
     );
   }
 `;
@@ -58,9 +61,10 @@ const Review = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 32px;
+    margin-top: 24px;
   }
 `;
+
 const ReviewCard = () => (
   <Review>
     <h2>Had a very wonderful experience learning with Allen. Thank you.</h2>
@@ -71,11 +75,12 @@ const ReviewCard = () => (
   </Review>
 );
 
-const Reviews = () => {
+const Reviews = ({ light }) => {
   return (
     <ReviewContainer>
-      <SectionHead light>Reviews</SectionHead>
-      <ReviewList>
+      <SectionHead light={light}>Reviews</SectionHead>
+      <ReviewList light={light}>
+        <ReviewCard />
         <ReviewCard />
         <ReviewCard />
       </ReviewList>
